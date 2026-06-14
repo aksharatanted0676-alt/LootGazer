@@ -1,0 +1,918 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=MedievalSharp&display=swap');
+
+:root {
+  --bg-dark: #12161A;
+  --surface-dark: #1C2229;
+  --surface-light: #252D37;
+  --gold: #D77A38;          /* Warm copper/amber accent from image */
+  --gold-hover: #F29A5B;    /* Bright copper hover */
+  --gold-glow: rgba(215, 122, 56, 0.35);
+  
+  --cyan: #3CE2E2;          /* Glowing Ice Teal from image */
+  --cyan-hover: #80F2F2;
+  --cyan-glow: rgba(60, 226, 226, 0.4);
+
+  --bronze: #4A5664;        /* Muted steel grey border/accents */
+  --bronze-dark: #2C353F;
+  --parchment: #1F262F;     /* Dark slate scroll/surface */
+  --parchment-dark: #161B21;
+  --parchment-light: #2E3844;
+  
+  --text-light: #C5D1DC;    /* Soft steel-white text from image */
+  --text-dark: #12161A;     /* Dark text for copper buttons */
+  --text-muted: #6C7D8E;    /* Muted grey-blue text */
+  
+  /* Status Colors */
+  --success-emerald: #3CE2E2; /* Glowing cyan used for success indicators */
+  --success-emerald-glow: rgba(60, 226, 226, 0.3);
+  --warning-amber: #D77A38;
+  --warning-amber-glow: rgba(215, 122, 56, 0.3);
+  --error-crimson: #FF4D4D;
+  --error-crimson-glow: rgba(255, 77, 77, 0.35);
+
+  /* Rarity Colors - PascalCase */
+  --rarity-Common: #6C7D8E;
+  --rarity-Uncommon: #5BB75B;
+  --rarity-Rare: #2F9FFF;
+  --rarity-Epic: #A65DFF;
+  --rarity-Legendary: #D77A38;
+
+  /* Rarity Colors - lowercase aliases for dynamic usage */
+  --rarity-common: #6C7D8E;
+  --rarity-uncommon: #5BB75B;
+  --rarity-rare: #2F9FFF;
+  --rarity-epic: #A65DFF;
+  --rarity-legendary: #D77A38;
+}
+
+[data-theme="light"] {
+  --bg-dark: #FAF8F5;       /* Sunny day marketplace stone paths/snow */
+  --surface-dark: #FFFFFF;  /* Clean white panels */
+  --surface-light: #F2ECE0; /* Tan/cream highlights */
+  --gold: #A0522D;          /* Sienna/copper for high contrast on light background */
+  --gold-hover: #CD853F;    /* Peru/copper hover */
+  --gold-glow: rgba(160, 82, 45, 0.15);
+  
+  --cyan: #0E7F87;          /* Dark teal for high contrast */
+  --cyan-hover: #179CA5;
+  --cyan-glow: rgba(14, 127, 135, 0.2);
+
+  --bronze: #A09080;        /* Warm tan borders */
+  --bronze-dark: #DDD4C8;   /* Light divider lines */
+  --parchment: #FCFBF7;     /* Bright parchment scroll */
+  --parchment-dark: #F3EDE0;
+  --parchment-light: #F9F6EE;
+  
+  --text-light: #2B1D12;    /* Legible dark warm brown text */
+  --text-dark: #FCFBF7;     /* White/cream text for button dark modes */
+  --text-muted: #6E5C4E;    /* Earth grey-brown for secondary text */
+  
+  /* Status Colors */
+  --success-emerald: #0E7F87;
+  --success-emerald-glow: rgba(14, 127, 135, 0.15);
+  --warning-amber: #A0522D;
+  --warning-amber-glow: rgba(160, 82, 45, 0.15);
+  --error-crimson: #C02020;
+  --error-crimson-glow: rgba(192, 32, 32, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(35, 45, 55, 0.3) 0%, rgba(18, 22, 26, 0.95) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%230e1217' fill-opacity='0.25'%3E%3Cpath d='M0 0h10v10H0zm20 20h10v10H20zm20-20h10v10H40zm20 20h10v10H60zm20-20h10v10H80z'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme="light"] body {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.6) 0%, rgba(240, 235, 225, 0.95) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%237a6b5a' fill-opacity='0.08'%3E%3Cpath d='M0 0h10v10H0zm20 20h10v10H20zm20-20h10v10H40zm20 20h10v10H60zm20-20h10v10H80z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Smooth theme transitions */
+body,
+.medieval-panel,
+.parchment-scroll,
+.item-card-frame,
+.btn-fantasy,
+input,
+select,
+textarea,
+th,
+td,
+header,
+aside,
+footer,
+.toast-message {
+  transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Custom Scrollbar for Slate Theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+  border-left: 1px solid var(--bronze-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-light);
+  border: 2px solid var(--bronze-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bronze);
+}
+
+/* Typography & Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', 'MedievalSharp', serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--gold); /* Copper header text */
+  text-shadow: 0 0 10px rgba(215, 122, 56, 0.15);
+}
+
+.quest-heading {
+  font-family: 'MedievalSharp', cursive;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  border-bottom: 2px solid var(--bronze-dark);
+  padding-bottom: 0.75rem;
+  position: relative;
+  color: var(--text-light);
+  text-shadow: 0 0 15px rgba(197, 209, 220, 0.2);
+}
+
+.quest-heading::before,
+.quest-heading::after {
+  content: '✦';
+  color: var(--cyan);
+  margin: 0 10px;
+  text-shadow: 0 0 8px var(--cyan);
+}
+
+/* Global Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  padding-bottom: 60px;
+}
+
+.page-container {
+  flex: 1;
+  padding: 2rem;
+  animation: fadeIn 0.6s ease-out;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Dark Slate Panels & Frames */
+.medieval-panel {
+  background-color: var(--surface-dark);
+  border: 1.5px solid var(--bronze-dark);
+  box-shadow: 
+    inset 0 0 12px rgba(0, 0, 0, 0.8), 
+    0 10px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  position: relative;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Glassmorphism Card - used by GlobalTradeHub and economy components */
+.glass-card {
+  background: rgba(28, 34, 41, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--bronze-dark);
+  border-radius: 6px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px rgba(215, 122, 56, 0.15), inset 0 0 15px rgba(215, 122, 56, 0.05);
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: var(--bronze-dark);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1), inset 0 0 10px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .glass-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px rgba(160, 82, 45, 0.15), inset 0 0 15px rgba(160, 82, 45, 0.05);
+}
+
+
+.medieval-panel::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border: 1px dashed rgba(74, 86, 100, 0.2);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.medieval-panel.glowing {
+  box-shadow: 
+    inset 0 0 12px rgba(0, 0, 0, 0.8), 
+    0 10px 25px rgba(0, 0, 0, 0.6),
+    0 0 15px var(--cyan-glow);
+  border-color: var(--cyan);
+}
+
+/* Slate Scroll Aesthetics */
+.parchment-scroll {
+  background-color: var(--parchment);
+  color: var(--text-light);
+  border: 2px solid var(--bronze);
+  border-radius: 6px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.8), 
+    inset 0 0 20px rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  font-family: 'EB Garamond', serif;
+  position: relative;
+}
+
+.parchment-scroll h1, 
+.parchment-scroll h2, 
+.parchment-scroll h3 {
+  color: var(--gold);
+  border-bottom: 1px solid var(--bronze-dark);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 8px var(--gold-glow);
+}
+
+.trading-hall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Collectible Item Cards */
+.item-card-frame {
+  background: linear-gradient(135deg, var(--surface-dark) 0%, #20272F 100%);
+  border: 1.5px solid var(--bronze-dark);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.item-card-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(60, 226, 226, 0.08), transparent);
+  transform: translateX(-100%);
+  transition: 0.8s;
+  pointer-events: none;
+}
+
+.item-card-frame:hover::before {
+  transform: translateX(100%);
+}
+
+.item-card-frame:hover {
+  transform: translateY(-5px);
+  border-color: var(--cyan);
+  box-shadow: 0 5px 20px var(--cyan-glow);
+}
+
+/* Card Glow by Rarity (Matching original borders but with neon glows) */
+.item-card-frame.rarity-Common { 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+  border-color: var(--rarity-Common);
+}
+.item-card-frame.rarity-Uncommon { 
+  box-shadow: 0 4px 15px rgba(91, 183, 91, 0.1); 
+  border-color: var(--rarity-Uncommon);
+}
+.item-card-frame.rarity-Rare { 
+  box-shadow: 0 4px 20px rgba(47, 159, 255, 0.15); 
+  border-color: var(--rarity-Rare);
+}
+.item-card-frame.rarity-Epic { 
+  box-shadow: 0 4px 25px rgba(166, 93, 255, 0.25); 
+  border-color: var(--rarity-Epic);
+}
+.item-card-frame.rarity-Legendary { 
+  box-shadow: 0 4px 30px rgba(215, 122, 56, 0.3), 0 0 8px rgba(215, 122, 56, 0.15); 
+  border-color: var(--rarity-Legendary);
+}
+
+/* Item Image/Artwork Placeholder */
+.item-image-wrapper {
+  height: 130px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  border-bottom: 1.5px solid var(--bronze-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.item-image-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.9);
+  pointer-events: none;
+}
+
+/* Copper & Slate Buttons */
+.btn-fantasy {
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  background: linear-gradient(180deg, var(--surface-light) 0%, var(--surface-dark) 100%);
+  color: var(--text-light);
+  border: 1px solid var(--bronze);
+  border-radius: 4px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-fantasy:hover:not(:disabled) {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+.btn-fantasy:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-fantasy:disabled {
+  background: #181c20;
+  border-color: #2c323a;
+  color: #4a5460;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Glowing Copper Button for Primary Actions */
+.btn-fantasy.btn-success {
+  background: linear-gradient(180deg, var(--gold) 0%, #9E4D1A 100%);
+  border-color: var(--gold);
+  color: var(--text-dark);
+}
+
+.btn-fantasy.btn-success:hover:not(:disabled) {
+  background: linear-gradient(180deg, var(--gold-hover) 0%, var(--gold) 100%);
+  color: var(--text-dark);
+  box-shadow: 0 0 12px var(--gold-glow);
+}
+
+.btn-fantasy.btn-danger {
+  background: linear-gradient(180deg, var(--error-crimson) 0%, #900 100%);
+  border-color: var(--error-crimson);
+  color: white;
+}
+
+.btn-fantasy.btn-danger:hover:not(:disabled) {
+  background: linear-gradient(180deg, #ff7373 0%, var(--error-crimson) 100%);
+  color: white;
+  box-shadow: 0 0 12px var(--error-crimson-glow);
+}
+
+/* Badges */
+.badge-rarity {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 1px solid currentColor;
+  display: inline-block;
+  text-shadow: 0 0 2px rgba(0,0,0,0.9);
+}
+
+.badge-rarity.Common { background-color: rgba(108, 125, 142, 0.15); color: var(--rarity-Common); }
+.badge-rarity.Uncommon { background-color: rgba(91, 183, 91, 0.15); color: var(--rarity-Uncommon); }
+.badge-rarity.Rare { background-color: rgba(47, 159, 255, 0.15); color: var(--rarity-Rare); }
+.badge-rarity.Epic { background-color: rgba(166, 93, 255, 0.15); color: var(--rarity-Epic); }
+.badge-rarity.Legendary { background-color: rgba(215, 122, 56, 0.15); color: var(--rarity-Legendary); }
+
+/* Medieval Table Styles */
+.medieval-table-container {
+  overflow-x: auto;
+  border: 1.5px solid var(--bronze-dark);
+  border-radius: 6px;
+  background-color: rgba(10, 12, 16, 0.4);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.9);
+}
+
+.medieval-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.medieval-table th {
+  background-color: rgba(28, 34, 41, 0.85);
+  color: var(--cyan);
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1.5px solid var(--bronze-dark);
+  letter-spacing: 0.05em;
+}
+
+.medieval-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(74, 86, 100, 0.1);
+  vertical-align: middle;
+  color: var(--text-light);
+}
+
+.medieval-table tr:hover td {
+  background-color: rgba(60, 226, 226, 0.03);
+}
+
+.medieval-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Form Styling */
+.fantasy-form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fantasy-form-group label {
+  font-family: 'Cinzel', serif;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+
+.fantasy-input, 
+.fantasy-select, 
+.fantasy-textarea {
+  background-color: rgba(10, 12, 16, 0.6);
+  border: 1.5px solid var(--bronze-dark);
+  color: var(--text-light);
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.fantasy-input:focus, 
+.fantasy-select:focus, 
+.fantasy-textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan-glow);
+  background-color: rgba(10, 12, 16, 0.8);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes parchmentOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%) translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) translateX(-50%);
+    opacity: 1;
+  }
+}
+
+/* Floating Ember Canvas */
+.ember-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Search Term Highlighting */
+.search-highlight {
+  background-color: rgba(60, 226, 226, 0.25);
+  color: #fff;
+  border-bottom: 1.5px solid var(--cyan);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(10, 12, 16, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+  overflow-y: auto;
+}
+
+.modal-scroll-content {
+  animation: parchmentOpen 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  max-width: 760px;
+  width: 100%;
+}
+
+/* Custom layout for detailed artifact card inside details modal */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+  border: 1.5px solid var(--bronze-dark);
+  padding: 1rem;
+  background-color: rgba(10, 12, 16, 0.3);
+  border-radius: 4px;
+}
+
+.stat-box {
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--cyan);
+  font-family: 'MedievalSharp', cursive;
+  text-shadow: 0 0 8px var(--cyan-glow);
+}
+
+/* Toast System style */
+.toast-container {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast-message {
+  pointer-events: auto;
+  animation: slideInUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  background: linear-gradient(135deg, var(--surface-dark) 0%, #151A20 100%);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8), 0 0 10px var(--gold-glow);
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Cinzel', serif;
+  min-width: 300px;
+  justify-content: center;
+}
+
+.toast-message.success {
+  border-color: var(--cyan);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8), 0 0 10px var(--cyan-glow);
+}
+
+.toast-message.error {
+  border-color: var(--error-crimson);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8), 0 0 10px var(--error-crimson-glow);
+}
+
+/* SVG Chart styling matching medieval style */
+.fantasy-chart {
+  background-color: rgba(10, 12, 16, 0.4);
+  border: 1px solid var(--bronze-dark);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.chart-axis {
+  stroke: var(--bronze-dark);
+  stroke-width: 2;
+}
+
+.chart-grid-line {
+  stroke: rgba(74, 86, 100, 0.08);
+  stroke-dasharray: 4 4;
+}
+
+.chart-line {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 5px var(--cyan-glow));
+}
+
+.chart-area {
+  fill: url(#chartGrad);
+  opacity: 0.12;
+}
+
+.chart-bar {
+  fill: var(--bronze-dark);
+  transition: all 0.3s ease;
+}
+
+.chart-bar:hover {
+  fill: var(--cyan);
+  filter: drop-shadow(0 0 4px var(--cyan-glow));
+}
+
+.chart-text {
+  fill: var(--text-muted);
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+}
+
+/* Rarity specific hover shine glow on items details */
+.rare-glow-effect {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+.rare-glow-effect.Legendary {
+  background: radial-gradient(circle, rgba(215, 122, 56, 0.4) 0%, transparent 70%);
+}
+.rare-glow-effect.Epic {
+  background: radial-gradient(circle, rgba(166, 93, 255, 0.4) 0%, transparent 70%);
+}
+.rare-glow-effect.Rare {
+  background: radial-gradient(circle, rgba(47, 159, 255, 0.4) 0%, transparent 70%);
+}
+.rare-glow-effect.Uncommon {
+  background: radial-gradient(circle, rgba(91, 183, 91, 0.2) 0%, transparent 70%);
+}
+.rare-glow-effect.Common {
+  background: radial-gradient(circle, rgba(108, 125, 142, 0.2) 0%, transparent 70%);
+}
+
+/* Mobile Sidebar Drawer and Backdrop */
+.sidebar-drawer {
+  position: fixed;
+  top: 0;
+  left: -260px; /* Hidden by default */
+  width: 250px;
+  height: 100vh;
+  z-index: 1000;
+  background-color: var(--surface-dark);
+  border-right: 3px solid var(--bronze);
+  box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
+  transition: left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1rem;
+}
+
+.sidebar-drawer.open {
+  left: 0;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(10, 12, 16, 0.65);
+  z-index: 999;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Shimmer overlay for card */
+.shimmer-effect {
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 30%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.item-card-frame:hover .shimmer-effect {
+  animation: shimmer 1.2s ease-in-out;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(150%) rotate(45deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 4px 30px var(--cyan-glow);
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+  /* Hide desktop sidebar */
+  .desktop-sidebar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+  
+  .quest-heading {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Stack grid layouts */
+  .grid-2col {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Tables horizontal scroll indicator */
+  .medieval-table-container {
+    box-shadow: inset 10px 0 15px -10px rgba(0,0,0,0.8), inset -10px 0 15px -10px rgba(0,0,0,0.8);
+  }
+
+  /* Kingdom network layout */
+  .kingdom-network-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .kingdom-network-sidebar {
+    margin-top: 1.5rem;
+  }
+  
+  /* Royal treasury layout */
+  .royal-treasury-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar adjustments */
+  header {
+    padding: 0.8rem 1rem !important;
+  }
+  
+  .navbar-logo-text {
+    font-size: 1.3rem !important;
+  }
+  
+  .navbar-gold-stats {
+    display: none !important; /* Hide total circulating gold on small screens to save space */
+  }
+  
+  .active-player-badge {
+    padding: 0.3rem 0.6rem !important;
+  }
+  
+  /* Card grids */
+  .trading-hall-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Stat boxes */
+  .stat-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem;
+  }
+  
+  /* Toast */
+  .toast-container {
+    width: 90%;
+    bottom: 15px;
+  }
+  
+  .toast-message {
+    min-width: 100%;
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+  
+  /* Modal full screen */
+  .modal-scroll-content {
+    max-height: 98vh;
+    padding: 1rem;
+  }
+}
