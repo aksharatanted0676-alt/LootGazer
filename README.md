@@ -174,31 +174,69 @@ Manages:
 ## 📸 Screenshots
 
 ### Login / Signup
-(Add Screenshot Here)
+
+<img width="1456" height="837" alt="Screenshot 2026-06-15 at 2 43 17 AM" src="https://github.com/user-attachments/assets/d87b2f46-4c25-4248-9044-914683837519" />
+
+
+<img width="1469" height="837" alt="Screenshot 2026-06-15 at 2 44 35 AM" src="https://github.com/user-attachments/assets/6014cf73-5097-4cbd-9bc8-552dccd62534" />
+
+
+
 
 ### Dashboard
-(Add Screenshot Here)
+<img width="1470" height="834" alt="Screenshot 2026-06-15 at 2 46 01 AM" src="https://github.com/user-attachments/assets/0345d0e6-0fb7-45c9-a9eb-bf9a14e8c374" />
+<img width="1468" height="834" alt="Screenshot 2026-06-15 at 2 46 10 AM" src="https://github.com/user-attachments/assets/55ea5874-987c-4c69-958d-97c6a18760f2" />
+<img width="1470" height="840" alt="Screenshot 2026-06-15 at 2 46 23 AM" src="https://github.com/user-attachments/assets/b2477245-63b5-4707-a994-9a82e43c2c18" />
+
+
+
 
 ### Trading Hall
-(Add Screenshot Here)
+
+<img width="1470" height="823" alt="Screenshot 2026-06-15 at 2 48 12 AM" src="https://github.com/user-attachments/assets/e70ed96e-be5a-4412-8aae-d5f2440f7856" />
+
+
+<img width="1470" height="836" alt="Screenshot 2026-06-15 at 2 48 21 AM" src="https://github.com/user-attachments/assets/516f70e8-958a-41ad-9102-d44213c41cb6" />
+
+
+
 
 ### Auction Ledger
-(Add Screenshot Here)
+<img width="1470" height="824" alt="Screenshot 2026-06-15 at 2 49 48 AM" src="https://github.com/user-attachments/assets/3263ff84-2def-40e5-9933-f0d8595f7b67" />
+
+
+
 
 ### Inventory Finder
-(Add Screenshot Here)
+<img width="1469" height="833" alt="Screenshot 2026-06-15 at 2 50 29 AM" src="https://github.com/user-attachments/assets/55575d49-0fe0-4ad7-b62c-ab500154a5d9" />
+
+
+
 
 ### Royal Treasury
-(Add Screenshot Here)
+<img width="837" height="700" alt="Screenshot 2026-06-15 at 2 52 15 AM" src="https://github.com/user-attachments/assets/66e08475-158d-4f1d-9bc2-c5c2ae94e9df" />
+
+
+
 
 ### Kingdom Network
-(Add Screenshot Here)
+<img width="1470" height="835" alt="Screenshot 2026-06-15 at 2 53 49 AM" src="https://github.com/user-attachments/assets/540128c1-6f32-468c-b965-a54113e0a3a2" />
+
+
+
 
 ### Global Trade Hub
-(Add Screenshot Here)
+<img width="1470" height="835" alt="Screenshot 2026-06-15 at 2 54 40 AM" src="https://github.com/user-attachments/assets/345f704d-9242-4b29-b70a-fcee7be7e6d3" />
+
+
+
 
 ### Market Trend Analytics
-(Add Screenshot Here)
+<img width="1459" height="786" alt="Screenshot 2026-06-15 at 2 55 57 AM" src="https://github.com/user-attachments/assets/b563b1f9-f1ce-45ea-8ad3-a2fbc5db340c" />
+<img width="1470" height="837" alt="Screenshot 2026-06-15 at 2 56 12 AM" src="https://github.com/user-attachments/assets/d2b7f451-7062-49ed-87f0-284a17776148" />
+
+
+
 
 ---
 
